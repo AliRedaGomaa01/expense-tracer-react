@@ -1,3 +1,22 @@
-.active {
-  @apply bg-blue-400;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  a {
+    @apply text-blue-400 underline
+  }
+}
+@layer components {
+  .nav-link.active {
+    @apply bg-my-grad border-2 border-gray-800;
+  }
+
+  .nav-link {
+    @apply p-3 m-3 rounded-xl border-2 border-transparent hover:opacity-80 hover:border-2 text-stone-900 no-underline hover:border-gray-800 font-bold;
+  }
+
+  .bg-my-grad{
+    @apply bg-gradient-to-tr from-yellow-100 to-blue-100
+  }
 }
