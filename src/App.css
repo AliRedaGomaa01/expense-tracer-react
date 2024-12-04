@@ -4,27 +4,43 @@
 
 @layer base {
   a {
-    @apply text-blue-400 underline
-  }
-}
-@layer components {
-  .nav-link.active {
-    @apply bg-my-grad border-2 border-gray-800;
+    @apply text-blue-400 underline;
   }
 
-  .nav-link {
-    @apply p-3 m-3 rounded-xl border-2 border-transparent hover:opacity-80 hover:border-2 text-stone-900 no-underline hover:border-gray-800 font-bold;
+  li .side-link{
+    @apply min-w-32 flex justify-center 
   }
+
+  a.nav-link {
+    @apply p-3 m-3 rounded-xl border-2 border-transparent hover:opacity-80 hover:border-2 text-stone-900 no-underline hover:border-gray-800 font-bold max-sm:min-w-32 block text-center;
+  }
+    
+  a.nav-link.active {
+    @apply bg-my-grad border-2 border-gray-800 max-sm:side-link ;
+  }
+
+}
+
+@layer components {
+
 
   .shadow-my-rounded {
-    @apply shadow-[2px_2px_10px_4px_rgba(0,0,0,0.1),-2px_-2px_10px_4px_rgba(0,0,0,0.1)]
-  }
-  
-  .shadow-my-upper{
-    @apply shadow-[-0_-2px_10px_4px_rgba(0,0,0,0.1)]
+    @apply shadow-[2px_2px_10px_4px_rgba(0,0,0,0.1),-2px_-2px_10px_4px_rgba(0,0,0,0.1)];
   }
 
-  .bg-my-grad{
-    @apply bg-gradient-to-tr from-yellow-100 to-blue-100
+  .shadow-my-upper {
+    @apply shadow-[-0_-2px_10px_4px_rgba(0,0,0,0.1)];
+  }
+
+  .bg-my-grad {
+    @apply bg-gradient-to-tr from-yellow-100 to-blue-100;
+  }
+
+  .side-menu-nav {
+    @apply fixed top-0 right-0  h-screen bg-white rounded-l-xl p-10 transition-[opacity_translate] duration-[700ms]
+  }
+
+  .header-nav {
+    @apply relative h-auto bg-transparent rounded-none p-0
   }
 }
