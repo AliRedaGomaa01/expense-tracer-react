@@ -16,6 +16,14 @@
     @apply p-3 m-3 rounded-xl border-2 border-transparent hover:opacity-80 hover:border-2 text-stone-900 no-underline hover:border-gray-800 font-bold;
   }
 
+  .shadow-my-rounded {
+    @apply shadow-[2px_2px_10px_4px_rgba(0,0,0,0.1),-2px_-2px_10px_4px_rgba(0,0,0,0.1)]
+  }
+  
+  .shadow-my-upper{
+    @apply shadow-[-0_-2px_10px_4px_rgba(0,0,0,0.1)]
+  }
+
   .bg-my-grad{
     @apply bg-gradient-to-tr from-yellow-100 to-blue-100
   }
