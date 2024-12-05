@@ -6,7 +6,7 @@ const MenuIcon = ({ isOpen = false , setIsOpen , className = "" }) => (
     onClick={() => setIsOpen(!isOpen)}
     className={`cursor-pointer rounded-full p-1 border border-transparent hover:border-black 
               transition-[opacity_border] duration-1000 sm:hidden 
-              ${isOpen ? " bg-white border-black" : ""}
+              ${isOpen ? " bg-yellow-100 border-black" : ""}
               ${className}`} />
 )
 

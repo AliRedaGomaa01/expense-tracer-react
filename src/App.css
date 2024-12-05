@@ -12,7 +12,7 @@
   }
 
   a.nav-link {
-    @apply p-3 m-3 rounded-xl border-2 border-transparent hover:opacity-80 hover:border-2 text-stone-900 no-underline hover:border-gray-800 font-bold max-sm:min-w-32 block text-center;
+    @apply p-3 m-3 rounded-xl border-2 border-transparent hover:opacity-80 hover:border-2 text-stone-900 no-underline hover:border-gray-800 font-bold max-sm:min-w-32 block text-center transition-colors duration-500;
   }
     
   a.nav-link.active {
@@ -37,7 +37,7 @@
   }
 
   .side-menu-nav {
-    @apply fixed top-0 right-0  h-screen bg-white rounded-l-xl p-10 transition-[opacity_translate] duration-[700ms]
+    @apply fixed top-0 right-0  h-screen bg-my-grad rounded-l-xl p-10 transition-[opacity_translate] duration-[700ms]
   }
 
   .header-nav {
