@@ -10,7 +10,7 @@ const Nav = ({ isAuthenticated }) => {
   const navigate = useNavigate();
 
   const neutralNavItems = useMemo(() => ({
-    Home: "/",
+    // Home: "/",
   }), []);
 
   const [navItems, setNavItems] = useState({ ...neutralNavItems });
@@ -73,7 +73,7 @@ const Nav = ({ isAuthenticated }) => {
           ))}
 
           {isAuthenticated && <li className="nav-list-item ">
-            <button className={` nav-link bg-red-500 text-[white_!important]  `} onClick={handleLogout}> Logout </button>
+            <button className={` nav-link text-[red_!important] font-black  `} onClick={handleLogout}> Logout </button>
           </li>}
         </ul>
 

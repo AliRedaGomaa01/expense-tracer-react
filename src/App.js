@@ -1,18 +1,17 @@
 import "./App.css";
 
-import { BrowserRouter, Routes, Route /* , Navigate */ } from "react-router-dom";
-import Layout from "./pages/Layout";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
 import Profile from "./pages/Profile";
-// import NotFound from "./pages/NotFound";
 import { useGlobalContext } from "./context/GlobalContext";
 import { useEffect, useState } from "react";
 import ForgotPassword from "./pages/auth/ForgotPassword";
 import ResetPassword from "./pages/auth/ResetPassword";
 import VerifyEmailFirst from "./pages/VerifyEmailFirst";
 import VerifyEmailForm from "./pages/VerifyEmailForm";
+import Layout from "./components/layout/Layout";
 
 function App() {
   const { state } = useGlobalContext();
@@ -83,12 +82,12 @@ function App() {
                 </>
               )}
               {/* 
-              <Route path="" element={< />} /> 
-            */}
+                <Route path="" element={< />} /> 
+              */}
               {/* verified authenticated routes  */}
               {/* 
-              <Route path="" element={< isVerified />} />
-            */}
+                <Route path="" element={< isVerified />} />
+              */}
             </>
           )}
 
