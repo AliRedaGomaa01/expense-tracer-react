@@ -7,22 +7,52 @@
     @apply text-blue-400 underline;
   }
 
-  li .side-link{
-    @apply min-w-32 flex justify-center 
+  li .side-link {
+    @apply min-w-32 flex justify-center z-50;
   }
 
-  a.nav-link {
+  a.nav-link,
+  button.nav-link {
     @apply p-3 m-3 rounded-xl border-2 border-transparent hover:opacity-80 hover:border-2 text-stone-900 no-underline hover:border-gray-800 font-bold max-sm:min-w-32 block text-center transition-colors duration-500;
   }
-    
+
   a.nav-link.active {
-    @apply bg-my-grad border-2 border-gray-800 max-sm:side-link ;
+    @apply bg-yellow-50 border-2 border-gray-800 max-sm:side-link underline;
   }
 
+  input.my-input {
+    @apply block w-full px-4 py-2 outline-none border-2 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500;
+  }
+
+  img.menu-icon {
+    @apply cursor-pointer hover:border-black transition-[opacity,border,transform] duration-200 sm:hidden bg-yellow-100 rounded-full  p-2 border border-transparent; 
+  }
 }
 
 @layer components {
+  #main-container:not(:has(#profile)) {
+    @apply bg-my-grad shadow-my-rounded
+  }
 
+  .max-w-my{
+    @apply max-w-[40rem]
+  }
+
+  .btn {
+    @apply w-full py-2 px-4 font-semibold rounded-md disabled:cursor-not-allowed mt-3
+  }
+
+  .primary-button {
+    @apply btn text-white bg-blue-500 hover:bg-blue-600 focus:ring-blue-500 disabled:bg-blue-300 ;
+  }
+
+  .secondary-button {
+    @apply btn text-blue-500 border border-blue-500 hover:bg-blue-50 hover:text-blue-700 hover:border-blue-700 disabled:text-blue-300 disabled:border-blue-300;
+  }
+
+  .danger-button {
+    @apply btn text-red-500 border border-red-500 hover:bg-red-50 hover:text-red-700 hover:border-red-700 disabled:text-red-300 disabled:border-red-300;
+  }
 
   .shadow-my-rounded {
     @apply shadow-[2px_2px_10px_4px_rgba(0,0,0,0.1),-2px_-2px_10px_4px_rgba(0,0,0,0.1)];
@@ -37,10 +67,10 @@
   }
 
   .side-menu-nav {
-    @apply fixed top-0 right-0  h-screen bg-my-grad rounded-l-xl p-10 transition-[opacity_translate] duration-[700ms]
+    @apply fixed top-0 right-0  h-screen bg-my-grad rounded-l-xl p-10 transition-[opacity_translate] duration-[700ms];
   }
 
   .header-nav {
-    @apply relative h-auto bg-transparent rounded-none p-0
+    @apply relative h-auto bg-transparent rounded-none p-0;
   }
 }
