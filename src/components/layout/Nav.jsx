@@ -4,7 +4,7 @@ import { useGlobalContext } from "../../context/GlobalContext";
 import menuIcon from "../../assets/icons/Menu.png";
 import closeIcon from "../../assets/icons/Close.png";
 
-const Nav = ({ isAuthenticated }) => {
+const Nav = ({ isAuthenticated, isVerified }) => {
   const [isOpen, setIsOpen] = useState(false);
   const { state, dispatch } = useGlobalContext();
   const navigate = useNavigate();
@@ -24,15 +24,23 @@ const Nav = ({ isAuthenticated }) => {
     Profile: "/profile",
   }), []);
 
+  const verifiedNavItems = useMemo(() => ({
+    Expenses: "/expenses",
+  }), [])
+
+  const unVerifiedNavItems = useMemo(() => ({
+    Verify: "/verify-email",
+  }), [])
+
   useEffect(() => {
-    setNavItems(isAuthenticated ? { ...neutralNavItems, ...authNavItems } : { ...neutralNavItems, ...guestNavItems });
-  }, [isAuthenticated, guestNavItems, authNavItems, neutralNavItems]);
+    setNavItems(isAuthenticated ? (isVerified ? { ...neutralNavItems,  ...verifiedNavItems , ...authNavItems } : { ...neutralNavItems, ...unVerifiedNavItems, ...authNavItems }) : { ...neutralNavItems, ...guestNavItems });
+  }, [isAuthenticated, isVerified, guestNavItems, authNavItems, neutralNavItems, verifiedNavItems]);
 
   const handleLogout = () => {
     try {
 
       dispatch({ type: "RESET_AUTH" });
-      dispatch({ type: "SET_FLASH_MSG", payload: { ...state.flashMsg, success: 'Logged Out Successfully' }  });
+      dispatch({ type: "SET_FLASH_MSG", payload: { ...state.flashMsg, success: 'Logged Out Successfully' } });
       navigate('/');
 
     } catch (error) {
@@ -73,7 +81,7 @@ const Nav = ({ isAuthenticated }) => {
           ))}
 
           {isAuthenticated && <li className="nav-list-item ">
-            <button className={` nav-link text-[red_!important] font-black  `} onClick={handleLogout}> Logout </button>
+            <button className={` nav-link text-[blue_!important] font-black  `} onClick={handleLogout}> Logout </button>
           </li>}
         </ul>
 

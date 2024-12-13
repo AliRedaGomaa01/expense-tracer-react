@@ -12,9 +12,14 @@ import ResetPassword from "./pages/auth/ResetPassword";
 import VerifyEmailFirst from "./pages/VerifyEmailFirst";
 import VerifyEmailForm from "./pages/VerifyEmailForm";
 import Layout from "./components/layout/Layout";
+import NotFound from "./pages/NotFound";
+import ExpenseIndex from "./pages/Expenses";
+import ShowMessage from "./pages/ShowMessage";
 
 function App() {
   const { state } = useGlobalContext();
+
+  const [middlewareRedirects, setMiddlewareRedirects] = useState({});
 
   const [isAuthenticated, setIsAuthenticated] = useState(
     !!state?.auth?.token?.text &&
@@ -33,6 +38,17 @@ function App() {
 
     setIsAuthenticated(!!tokenIsValid);
     setIsVerified(!!userIsVerified);
+
+    setMiddlewareRedirects({
+      guest: !!tokenIsValid && (
+        <ShowMessage message="Logout To Reach This Page" />
+      ),
+      auth: !tokenIsValid && <ShowMessage message="Login To Reach This Page" />,
+      verified: !userIsVerified && <VerifyEmailFirst />,
+      unverified: !!userIsVerified && (
+        <ShowMessage message="Your email is already verified" />
+      ),
+    });
   }, [
     state?.auth?.token?.text,
     state?.auth?.token?.expires_at,
@@ -51,50 +67,51 @@ function App() {
           {/* both guest and auth routes */}
           <Route index element={<Home />} />
           {/* guest routes */}
-          {!isAuthenticated && (
-            <>
-              <Route path="register" element={<Register />} />
-              <Route path="login" element={<Login />} />
-              <Route path="forgot-password" element={<ForgotPassword />} />
-              <Route
-                path="reset-password/:token?"
-                element={<ResetPassword />}
-              />
-              {/* <Route path="verify-email/:token" element={<Register />} /> */}
-            </>
-          )}
+          <Route
+            path="register"
+            element={middlewareRedirects.guest || <Register />}
+          />
+          <Route
+            path="login"
+            element={middlewareRedirects.guest || <Login />}
+          />
+          <Route
+            path="forgot-password"
+            element={middlewareRedirects.guest || <ForgotPassword />}
+          />
+          <Route
+            path="reset-password/:token?"
+            element={middlewareRedirects.guest || <ResetPassword />}
+          />
           {/* auth routes */}
-          {isAuthenticated && (
-            <>
-              {/* both verified and unverified authenticated routes  */}
-              <Route path="profile" element={<Profile />} />
-              {/* unverified only authenticated routes  */}
-              {!isVerified && (
-                <>
-                  <Route
-                    path="verify-email-first"
-                    element={<VerifyEmailFirst />}
-                  />
-                  <Route
-                    path="verify-email/:token"
-                    element={<VerifyEmailForm />}
-                  />
-                </>
-              )}
-              {/* 
-                <Route path="" element={< />} /> 
-              */}
-              {/* verified authenticated routes  */}
-              {/* 
-                <Route path="" element={< isVerified />} />
-              */}
-            </>
-          )}
-
-          {/* fallback */}
-          <Route path="*" element={<Home />} />
-          {/* <Route path="*" element={<Navigate to="/" replace />} /> */}
+          {/* both verified and unverified authenticated routes  */}
+          <Route
+            path="profile"
+            element={middlewareRedirects.auth || <Profile />}
+          />
+          {/* unverified only authenticated routes  */}
+          <Route path="verify-email" element={<VerifyEmailFirst />} />
+          <Route
+            path="verify-email/:token"
+            element={
+              middlewareRedirects.auth ||
+              middlewareRedirects.unverified || <VerifyEmailForm />
+            }
+          />
+          {/* verified authenticated routes  */}
+          <Route path="expenses">
+            <Route
+              index
+              element={
+                middlewareRedirects.auth ||
+                middlewareRedirects.verified || <ExpenseIndex />
+              }
+            />
+          </Route>
         </Route>
+        {/* fallback  page */}
+        {/* <Route path="*" element={<Navigate to="/" replace />} /> */}
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );

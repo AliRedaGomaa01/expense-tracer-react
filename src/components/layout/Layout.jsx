@@ -16,17 +16,17 @@ const Layout = ({ isAuthenticated, isVerified }) => {
 
   return (
     <>
-      <div className="flex flex-col justify-between gap-10 min-h-screen bg-yellow-50">
+      <div className="flex flex-col justify-between gap-10 min-h-screen bg-yellow-50 scroll-smooth">
         <div className="">
           <div className="flex flex-row justify-between items-center bg-my-grad  p-10 shadow-lg">
-            <NavLink to={'/'} className={''}> <img src={logo} alt="logo" width="100px" height={"100px"} /> </NavLink>
+            <NavLink to={'/'} className={( { isActive }) => ( " [&_*]:mt-[-5px] border-2 rounded-full " + (isActive ? "border-black " : "border-transparent")) }> <img src={logo} alt="logo" width="100px" height="100px" /> </NavLink>
             <Nav isAuthenticated={isAuthenticated} isVerified={isVerified} />
           </div>
           {!!state?.flashMsg?.success && <div className="bg-green-100 p-3 text-center">{state?.flashMsg?.success}</div>}
           {!!state?.flashMsg?.error && <div className="bg-red-100 p-3 text-center">{state?.flashMsg?.error}</div>}
         </div>
 
-        <div className="p-5 mx-auto min-w-[30vw] max-w-[90vw] rounded-xl flex items-center justify-center" id="main-container">
+        <div className="p-2 sm:p-5 mx-auto min-w-[30vw] max-w-[90vw] rounded-xl flex items-center justify-center" id="main-container">
           <Outlet />
         </div>
 

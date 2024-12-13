@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useGlobalContext } from "../../context/GlobalContext";
 import validatePasswordFn from "../../util/validatePasswordFn";
+import InputError from "../../components/InputError";
 
 const ResetPassword = () => {
   const { state, dispatch } = useGlobalContext();
@@ -57,16 +58,20 @@ const ResetPassword = () => {
       const response = await axios.post(`${process.env.REACT_APP_API_URL}/reset-password`, formData);
       // console.log(response.data);
       if (response.data.status === "error") {
+        
         setErrors({ ...response.data.errors });
+        
       } else if (response.data.status === "success") {
+        
         localStorage.removeItem("reset_password_email");
         setSuccessMessage("Password reset successfully. You will be redirected soon.");
-        dispatch({ type: "SET_FLASH_MSG", payload: { ...state.flashMsg, error: 'Password reset successfully' } } );
+        dispatch({ type: "SET_FLASH_MSG", payload: { ...state.flashMsg, error: 'Password reset successfully' } });
         navigate('/login');
+        
       }
     } catch (error) {
       console.log(error);
-      setErrors({ form: "An error occurred. Please try again." });
+      setErrors({ form: ["An error occurred. Please try again."] });
     } finally {
       setIsSubmitting(false);
     }
@@ -77,9 +82,9 @@ const ResetPassword = () => {
       <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">
         Reset Password
       </h2>
-      {errors?.form && (
-        <p className="mb-4 text-sm text-red-600 text-center">{errors?.form}</p>
-      )}
+
+      <InputError errors={errors?.form} />
+
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
           <label
@@ -88,6 +93,7 @@ const ResetPassword = () => {
           >
             Email
           </label>
+
           <input
             type="email"
             id="email"
@@ -95,16 +101,11 @@ const ResetPassword = () => {
             value={formData.email}
             onChange={(e) => setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }))}
             className={`my-input ${errors?.email ? "border-red-500" : "border-gray-300"}`}
+            required
           />
-          {errors?.email?.length > 0 && (
-            <div className="mt-4 p-3 text-red-700 bg-red-100 border border-red-300 rounded">
-              <ul className="list-disc list-inside">
-                {errors?.email?.map((error, index) => (
-                  <li key={index}>{error}</li>
-                ))}
-              </ul>
-            </div>
-          )}
+
+          <InputError errors={errors?.email} />
+
         </div>
 
         <div>
@@ -114,6 +115,7 @@ const ResetPassword = () => {
           >
             Token
           </label>
+
           <input
             type="text"
             id="token"
@@ -121,16 +123,11 @@ const ResetPassword = () => {
             value={formData.token}
             onChange={(e) => setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }))}
             className={`my-input ${errors?.token ? "border-red-500" : "border-gray-300"}`}
+            required
           />
-          {errors?.token?.length > 0 && (
-            <div className="mt-4 p-3 text-red-700 bg-red-100 border border-red-300 rounded">
-              <ul className="list-disc list-inside">
-                {errors?.token?.map((error, index) => (
-                  <li key={index}>{error}</li>
-                ))}
-              </ul>
-            </div>
-          )}
+
+          <InputError errors={errors?.token} />
+
         </div>
 
         <div>
@@ -140,6 +137,7 @@ const ResetPassword = () => {
           >
             Password
           </label>
+
           <div className="relative">
             <input
               type={passwordVisible ? "text" : "password"}
@@ -148,6 +146,7 @@ const ResetPassword = () => {
               value={formData.password}
               onChange={(e) => setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }))}
               className={`my-input ${errors?.password ? "border-red-500" : "border-gray-300"}`}
+              required
             />
             <button
               type="button"
@@ -157,15 +156,9 @@ const ResetPassword = () => {
               {passwordVisible ? "Hide" : "Show"}
             </button>
           </div>
-          {errors?.password?.length > 0 && (
-            <div className="mt-4 p-3 text-red-700 bg-red-100 border border-red-300 rounded">
-              <ul className="list-disc list-inside">
-                {errors?.password?.map((error, index) => (
-                  <li key={index}>{error}</li>
-                ))}
-              </ul>
-            </div>
-          )}
+
+          <InputError errors={errors?.password} />
+
         </div>
 
         <div>
@@ -175,6 +168,7 @@ const ResetPassword = () => {
           >
             Confirm Password
           </label>
+
           <input
             type={passwordVisible ? "text" : "password"}
             id="password_confirmation"
@@ -182,16 +176,11 @@ const ResetPassword = () => {
             value={formData.password_confirmation}
             onChange={(e) => setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }))}
             className={`my-input ${errors?.password_confirmation ? "border-red-500" : "border-gray-300"}`}
+            required
           />
-          {errors?.password_confirmation?.length > 0 && (
-            <div className="mt-4 p-3 text-red-700 bg-red-100 border border-red-300 rounded">
-              <ul className="list-disc list-inside">
-                {errors?.password_confirmation?.map((error, index) => (
-                  <li key={index}>{error}</li>
-                ))}
-              </ul>
-            </div>
-          )}
+
+          <InputError errors={errors?.password_confirmation} />
+
         </div>
 
         <button

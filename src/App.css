@@ -4,7 +4,7 @@
 
 @layer base {
   a {
-    @apply text-blue-400 underline;
+    @apply text-blue-600 underline;
   }
 
   li .side-link {
@@ -20,7 +20,7 @@
     @apply bg-yellow-50 border-2 border-gray-800 max-sm:side-link underline;
   }
 
-  input.my-input {
+  input.my-input , select.my-input{
     @apply block w-full px-4 py-2 outline-none border-2 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500;
   }
 
@@ -30,7 +30,7 @@
 }
 
 @layer components {
-  #main-container:not(:has(#profile)) {
+  #main-container:not(:has(#transparent-parent)) {
     @apply bg-my-grad shadow-my-rounded
   }
 
@@ -49,9 +49,13 @@
   .secondary-button {
     @apply btn text-blue-500 border border-blue-500 hover:bg-blue-50 hover:text-blue-700 hover:border-blue-700 disabled:text-blue-300 disabled:border-blue-300;
   }
-
+  
   .danger-button {
-    @apply btn text-red-500 border border-red-500 hover:bg-red-50 hover:text-red-700 hover:border-red-700 disabled:text-red-300 disabled:border-red-300;
+    @apply btn text-white bg-red-500 hover:bg-red-600 focus:ring-red-500 disabled:bg-red-300;
+  }
+
+  .danger-secondary-button {
+    @apply btn text-red-500 border bg-white border-red-500 hover:bg-red-50 hover:text-red-700 hover:border-red-700 disabled:text-red-300 disabled:border-red-300;
   }
 
   .shadow-my-rounded {
@@ -63,7 +67,7 @@
   }
 
   .bg-my-grad {
-    @apply bg-gradient-to-tr from-yellow-100 to-blue-100;
+    @apply bg-gradient-to-l from-green-50 to-blue-50;
   }
 
   .side-menu-nav {

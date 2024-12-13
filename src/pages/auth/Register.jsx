@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import { useGlobalContext } from "../../context/GlobalContext";
 import validatePasswordFn from "../../util/validatePasswordFn";
+import InputError from "../../components/InputError";
 
 const Register = () => {
   const { state, dispatch } = useGlobalContext();
@@ -69,12 +70,12 @@ const Register = () => {
         } else if (response.data.status === "success") {
           localStorage.setItem("auth", JSON.stringify(response.data.data));
           dispatch({ type: "SET_STATE", payload: { state, auth: response.data.data } });
-        dispatch({ type: "SET_FLASH_MSG", payload:  { ...state.flashMsg, success: 'Registered successfully' } });
+          dispatch({ type: "SET_FLASH_MSG", payload: { ...state.flashMsg, success: 'Registered successfully' } });
           navigate('/');
         }
       }).catch((error) => {
         console.log(error);
-        setErrors({ form: "An error occurred. Please try again." });
+        setErrors({ form: ["An error occurred. Please try again."] });
       });
   };
 
@@ -83,14 +84,13 @@ const Register = () => {
       <h2 className="text-2xl font-semibold mb-4 text-gray-800 text-center">
         Register an Account
       </h2>
-      {errors?.form && (
-        <p className="mb-4 text-sm text-red-600 text-center">{errors?.form}</p>
-      )}
+      <InputError errors={errors?.form} />
       <form onSubmit={handleSubmit} className="space-y-6">
         <div>
           <label htmlFor="name" className="block text-sm font-medium text-gray-700">
             Name
           </label>
+
           <input
             type="text"
             name="name"
@@ -99,22 +99,19 @@ const Register = () => {
             onChange={handleChange}
             className={`my-input ${errors?.name ? "border-red-500" : "border-gray-300"}`}
             placeholder="Enter your name"
+            required
+
           />
-          {errors?.name?.length > 0 && (
-            <div className="mt-4 p-3 text-red-700 bg-red-100 border border-red-300 rounded">
-              <ul className="list-disc list-inside">
-                {errors?.name?.map((error, index) => (
-                  <li key={index}>{error}</li>
-                ))}
-              </ul>
-            </div>
-          )}
+
+          <InputError errors={errors?.name} />
+
         </div>
 
         <div>
           <label htmlFor="email" className="block text-sm font-medium text-gray-700">
             Email
           </label>
+
           <input
             type="email"
             name="email"
@@ -123,22 +120,17 @@ const Register = () => {
             onChange={handleChange}
             className={`my-input ${errors?.email ? "border-red-500" : "border-gray-300"}`}
             placeholder="Enter your email"
+            required
           />
-          {errors?.email?.length > 0 && (
-            <div className="mt-4 p-3 text-red-700 bg-red-100 border border-red-300 rounded">
-              <ul className="list-disc list-inside">
-                {errors?.email?.map((error, index) => (
-                  <li key={index}>{error}</li>
-                ))}
-              </ul>
-            </div>
-          )}
+
+          <InputError errors={errors?.email} />
         </div>
 
         <div>
           <label htmlFor="password" className="block text-sm font-medium text-gray-700">
             Password
           </label>
+
           <div className="relative">
             <input
               type={showPassword ? "text" : "password"}
@@ -148,6 +140,7 @@ const Register = () => {
               onChange={handleChange}
               className={`my-input ${errors?.password ? "border-red-500" : "border-gray-300"}`}
               placeholder="Enter your password"
+              required
             />
             <button
               type="button"
@@ -157,15 +150,8 @@ const Register = () => {
               {showPassword ? "Hide" : "Show"}
             </button>
           </div>
-          {errors?.password?.length > 0 && (
-            <div className="mt-4 p-3 text-red-700 bg-red-100 border border-red-300 rounded">
-              <ul className="list-disc list-inside">
-                {errors?.password?.map((error, index) => (
-                  <li key={index}>{error}</li>
-                ))}
-              </ul>
-            </div>
-          )}
+
+          <InputError errors={errors?.password} />
         </div>
 
         <div>
@@ -175,6 +161,7 @@ const Register = () => {
           >
             Confirm Password
           </label>
+
           <input
             type={showPassword ? "text" : "password"}
             name="password_confirmation"
@@ -183,8 +170,11 @@ const Register = () => {
             onChange={handleChange}
             className={`my-input ${errors?.password_confirmation ? "border-red-500" : "border-gray-300"}`}
             placeholder="Confirm your password"
+            required
           />
         </div>
+        
+        <InputError errors={errors?.password_confirmation} />
 
         <button
           type="submit"

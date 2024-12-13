@@ -1,8 +1,12 @@
 const Home = () => {
+
   return (<div className="max-w-my grid gap-7">
     <h1 className="text-2xl font-bold text-blue-600 mb-4 text-center ">
-      Welcome and thank you for choosing our personal expense tracking web app!
+      ♥ Welcome ♥
     </h1>
+    <p className="text-gray-700 mb-4">
+      Thank you for choosing our personal expense tracking web app!
+    </p>
     <p className="text-gray-700 mb-4">
       Our app is designed to help you manage your daily expenses easily and effectively, allowing you to organize your budget in a smart and hassle-free way.
     </p>

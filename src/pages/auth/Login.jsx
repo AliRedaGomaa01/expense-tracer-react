@@ -1,7 +1,8 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useGlobalContext } from "../../context/GlobalContext";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import InputError from "../../components/InputError";
 
 const Login = () => {
   const { state, dispatch } = useGlobalContext();
@@ -66,7 +67,7 @@ const Login = () => {
         }
       }).catch((error) => {
         console.log(error);
-        setErrors({ form: "An error occurred. Please try again." });
+        setErrors({ form: ["An error occurred. Please try again."] });
       });
   };
 
@@ -75,15 +76,16 @@ const Login = () => {
       <h2 className="text-2xl font-semibold mb-4 text-gray-800 text-center">
         Login to Your Account
       </h2>
-      {errors?.form && (
-        <p className="mb-4 text-sm text-red-600 text-center">{errors?.form}</p>
-      )}
+
+      <InputError errors={errors?.form} />
+
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Email Input */}
         <div>
           <label htmlFor="email" className="block text-sm font-medium text-gray-700">
             Email
           </label>
+
           <input
             type="email"
             name="email"
@@ -92,16 +94,11 @@ const Login = () => {
             onChange={handleChange}
             className={`my-input ${errors?.email ? "border-red-500" : "border-gray-300"}`}
             placeholder="Enter your email"
+            required
           />
-          {errors?.email?.length > 0 && (
-            <div className="mt-4 p-3 text-red-700 bg-red-100 border border-red-300 rounded">
-              <ul className="list-disc list-inside">
-                {errors?.email?.map((error, index) => (
-                  <li key={index}>{error}</li>
-                ))}
-              </ul>
-            </div>
-          )}
+
+          <InputError errors={errors?.email} />
+
         </div>
 
         {/* Password Input */}
@@ -109,6 +106,7 @@ const Login = () => {
           <label htmlFor="password" className="block text-sm font-medium text-gray-700">
             Password
           </label>
+
           <div className="relative">
             <input
               type={showPassword ? "text" : "password"}
@@ -118,6 +116,8 @@ const Login = () => {
               onChange={handleChange}
               className={`my-input ${errors?.password ? "border-red-500" : "border-gray-300"}`}
               placeholder="Enter your password"
+              required
+
             />
             <button
               type="button"
@@ -127,15 +127,9 @@ const Login = () => {
               {showPassword ? "Hide" : "Show"}
             </button>
           </div>
-          {errors?.password?.length > 0 && (
-            <div className="mt-4 p-3 text-red-700 bg-red-100 border border-red-300 rounded">
-              <ul className="list-disc list-inside">
-                {errors?.password?.map((error, index) => (
-                  <li key={index}>{error}</li>
-                ))}
-              </ul>
-            </div>
-          )}
+
+          <InputError errors={errors?.password} />
+
         </div>
 
         {/* Test Only Checkbox */}
@@ -148,7 +142,7 @@ const Login = () => {
             className="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
           />
           <label htmlFor="isForTest" className="ml-2 block text-sm text-gray-700">
-            For Test Only ? <small className="text-xs text-red-500 font-bold flex flex-wrap" > ( * There may be some unexpected data behavior <br /> from other testers who are using the same account * ) </small>  
+            For Test Only ? <small className="text-xs text-red-500 font-bold flex flex-wrap" > ( * There may be some unexpected data behavior <br /> from other testers who are using the same account * ) </small>
           </label>
         </div>
 
