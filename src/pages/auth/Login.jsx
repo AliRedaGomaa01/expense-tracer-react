@@ -141,8 +141,8 @@ const Login = () => {
             onChange={fillTestData}
             className="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
           />
-          <label htmlFor="isForTest" className="ml-2 block text-sm text-gray-700">
-            For Test Only ? <small className="text-xs text-red-500 font-bold flex flex-wrap" > ( * There may be some unexpected data behavior <br /> from other testers who are using the same account * ) </small>
+          <label htmlFor="isForTest" className="ml-2 block text-sm text-gray-700 max-w-[250px]">
+            For Test Only ? <small className="text-xs text-red-500 font-bold flex flex-wrap" > ( * It’s recommended to register to avoid unexpected data issues caused by other testers sharing the same test account. * ) </small>
           </label>
         </div>
 
