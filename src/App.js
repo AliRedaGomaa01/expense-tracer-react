@@ -108,10 +108,10 @@ function App() {
               }
             />
           </Route>
+          {/* fallback  page */}
+          {/* <Route path="*" element={<Navigate to="/" replace />} /> */}
+          <Route path="*" element={<NotFound />} />
         </Route>
-        {/* fallback  page */}
-        {/* <Route path="*" element={<Navigate to="/" replace />} /> */}
-        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );

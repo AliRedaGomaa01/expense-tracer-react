@@ -76,7 +76,7 @@ const Nav = ({ isAuthenticated, isVerified }) => {
 
           {Object.keys(navItems).map((name, index) => (
             <li key={name} className="nav-list-item">
-              <NavLink to={navItems[name]} className={({ isActive }) => `nav-link ${isActive ? "active" : ""} `}> {name} </NavLink>
+              <NavLink to={navItems[name]} end className={({ isActive }) => `nav-link ${isActive ? "active" : ""} `}> {name} </NavLink>
             </li>
           ))}
 
