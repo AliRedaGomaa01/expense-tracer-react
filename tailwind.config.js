@@ -33,28 +33,24 @@ module.exports = {
         },
         bg: {
           "0%": {
-            "background-image": "url('assets/images/forest.jpg')",
             opacity: "1"
           },
           "16%": {
-            opacity: "0.5"
+            opacity: "0.9"
           },
           "32%": {
-            "background-image": "url('assets/images/nature.jpg')",
             opacity: "1"
           },
           "48%": {
-            opacity: "0.5"
+            opacity: "0.9"
           },
           "64%": {
-            "background-image": "url('assets/images/mountain.jpg')",
             opacity: "1"
           },
           "80%": {
-            opacity: "0.5"
+            opacity: "0.9"
           },
           "100%": {
-            "background-image": "url('assets/images/forest.jpg')",
             opacity: "1"
           },
         },
