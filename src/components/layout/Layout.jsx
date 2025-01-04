@@ -20,7 +20,7 @@ const Layout = ({ isAuthenticated, isVerified }) => {
       >
         <div className="">
           <div className="flex flex-row justify-between items-center bg-my-grad  p-10 shadow-lg">
-            <NavLink to={'/'} className={({ isActive }) => (" [&_*]:mt-[-5px] border-2 rounded-full " + (isActive ? "border-black " : "border-transparent"))}> <img src={logo} alt="logo" width="100px" height="100px" /> </NavLink>
+            <NavLink to={'/'} className={({ isActive }) => (" [&_*]:mt-[-5px] border-2 rounded-full " + (isActive ? "border-black " : "border-transparent"))}> <img src={logo} alt="logo" className="h-[60px] w-[60px]  sm:h-[80px] sm:w-[80px]" /> </NavLink>
             <Nav isAuthenticated={isAuthenticated} isVerified={isVerified} />
           </div>
           {!!state?.flashMsg?.success && <div className="bg-green-100 p-3 text-center">{state?.flashMsg?.success}</div>}
