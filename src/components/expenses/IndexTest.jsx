@@ -57,7 +57,7 @@ export default function IndexTest({ state, dispatch, ...props }) {
 
   return (
     <>
-      {state?.auth?.user?.email === 'test@aly-h.com' &&
+      {
         <>
           <h1 className="text-2xl text-center font-bold my-3 p-3  rounded-xl bg-black text-white ">Test Data</h1>
 

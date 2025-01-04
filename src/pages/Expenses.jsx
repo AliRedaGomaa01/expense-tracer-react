@@ -54,9 +54,9 @@ export default function ExpenseIndex() {
     ? (<Loading />)
     : (
       <div className="min-w-[80vw] space-y-10 " id="transparent-parent">
-        <div className={containerClasses}>
+        {state?.auth?.user?.email === 'test@aly-h.com' && <div className={containerClasses}>
           <IndexTest state={state} dispatch={dispatch} />
-        </div>
+        </div>}
 
         <div className={containerClasses}>
           <CreateNewInputs setFetchedData={setFetchedData} categories={fetchedData?.categories} />
