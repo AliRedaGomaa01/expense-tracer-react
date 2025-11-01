@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/static/css/main.43512ab9.css",
+    "main.js": "/static/js/main.38504b98.js",
+    "static/js/453.ed3810f9.chunk.js": "/static/js/453.ed3810f9.chunk.js",
+    "static/media/PlayfairDisplay-Bold.ttf": "/static/media/PlayfairDisplay-Bold.a44ebc27b80d88dc868d.ttf",
+    "static/media/PlayfairDisplay-Black.ttf": "/static/media/PlayfairDisplay-Black.9838940b9aee7af3976b.ttf",
+    "static/media/PlayfairDisplay-Regular.ttf": "/static/media/PlayfairDisplay-Regular.693728812dc43ab34710.ttf",
+    "static/media/PlayfairDisplay-BoldItalic.ttf": "/static/media/PlayfairDisplay-BoldItalic.de3cdb97f0464be171a6.ttf",
+    "static/media/PlayfairDisplay-Italic.ttf": "/static/media/PlayfairDisplay-Italic.a5b813a9539a87133d85.ttf",
+    "static/media/PlayfairDisplay-BlackItalic.ttf": "/static/media/PlayfairDisplay-BlackItalic.5be14b5de91fdd10f4be.ttf",
+    "static/media/logo.svg": "/static/media/logo.cbd540c9c522e202079e58ef8253b5c5.svg",
+    "index.html": "/index.html",
+    "main.43512ab9.css.map": "/static/css/main.43512ab9.css.map",
+    "main.38504b98.js.map": "/static/js/main.38504b98.js.map",
+    "453.ed3810f9.chunk.js.map": "/static/js/453.ed3810f9.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.43512ab9.css",
+    "static/js/main.38504b98.js"
+  ]
+}
